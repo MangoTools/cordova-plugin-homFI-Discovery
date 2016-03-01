@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	id="cordova-plugin-homfi"
+	version="0.9.11">
+
+	<name>Cordova - HomFi - Discovery</name>
+	<description>Discover HomFi controllers</description>
+	<author>JB Blanc</author>
+	<repo>https://github.com/MangoTools/cordova-plugin-homFI-Discovery.git</repo>
+	<license>ISC</license>
+	<keywords>udp, multicast, service, discovery, mdns, bonjour, HomFi, local, network, wifi</keywords>
+
+	<js-module src="www/discovery.js" name="discovery">
+		<clobbers target="Discovery"/>
+	</js-module>
+
+	<dependency id="cordova-plugin-chrome-apps-system-network" url="https://github.com/MobileChromeApps/cordova-plugin-chrome-apps-system-network" commit="master" />
+	
+	<platform name="android">
+		<!-- inject <feature> tag into config.xml to register the plugin -->
+		<config-file target="res/xml/config.xml" parent="/*">
+			<feature name="Discovery">
+				<param name="android-package" value="tools.mango.homfi.cordova.Discovery"/>
+			</feature>
+		</config-file>
+		<config-file target="AndroidManifest.xml" parent="/*">
+			<uses-permission android:name="android.permission.INTERNET"/>
+			<uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+		</config-file>
+		<source-file src="src/android/Discovery.java" target-dir="src/tools/mango/homFi/cordova/" />
+	</platform>
+
+</plugin>
+

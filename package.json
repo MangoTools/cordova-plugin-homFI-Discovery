@@ -1,0 +1,35 @@
+{
+  "name": "cordova-plugin-homfi",
+  "version": "0.9.11",
+  "description": "Easy Service Discovery on Local Networks",
+  "cordova": {
+    "id": "cordova-plugin-homfi",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MangoTools/cordova-plugin-homFI-Discovery.git"
+  },
+  "keywords": [
+    "udp",
+    "multicast",
+    "service",
+    "discovery",
+    "mdns",
+    "bonjour",
+    "diont",
+    "local",
+    "network",
+    "wifi",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "JB Blanc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MangoTools/cordova-plugin-homFI-Discovery/issues"
+  },
+  "homepage": "https://github.com/MangoTools/cordova-plugin-homFI-Discovery#readme"
+}
