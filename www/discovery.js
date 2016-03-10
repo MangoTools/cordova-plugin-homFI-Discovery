@@ -33,6 +33,14 @@ module.exports = function() {
 					}
 				}
 			}
+			if(message.event ==='force'){
+				if (events["force"]) {
+					for(var callbackId in events["force"]) {
+						var callback = events["force"][callbackId];
+						callback(message);
+					}
+				}
+			}
 		} catch(e) {
 			// ignore...
 		}
@@ -72,11 +80,11 @@ module.exports = function() {
 	// =====
 
 	function generalSuccessCallback(success) {
-		//console.log(success)
+		console.log(success)
 	}
 
 	function generalFailCallback(error) {
-		//console.log(error)
+		console.log(error)
 	}
 
 
