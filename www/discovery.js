@@ -72,8 +72,11 @@ module.exports = function() {
 	exports.on = function(eventName, callback) {
 		if (events.hasOwnProperty(eventName)) {
 			events[eventName].push(callback);
+		} else{
+			events[eventName] = {};
 		}
 		var callbackId = guid();
+
 		events[eventName][callbackId] = callback;
 		return callbackId;
 	};
