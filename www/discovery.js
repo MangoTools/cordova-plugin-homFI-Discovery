@@ -26,20 +26,22 @@ module.exports = function() {
 			var message = JSON.parse(buffer);
 
 			if(message.event ==='announce'){
-				if (events["announce"]) {
-					for(var callbackId in events["announce"]) {
-						var callback = events["announce"][callbackId];
-						callback(message);
-					}
-				}
+				cordova.fireWindowEvent("announce", message);
+				//if (events["announce"]) {
+				//	for(var callbackId in events["announce"]) {
+				//		var callback = events["announce"][callbackId];
+				//		callback(message);
+				//	}
+				//}
 			}
 			if(message.event ==='force'){
-				if (events["force"]) {
-					for(var callbackId in events["force"]) {
-						var callback = events["force"][callbackId];
-						callback(message);
-					}
-				}
+				cordova.fireWindowEvent("announce", message);
+				//if (events["force"]) {
+				//	for(var callbackId in events["force"]) {
+				//		var callback = events["force"][callbackId];
+				//		callback(message);
+				//	}
+				//}
 			}
 		} catch(e) {
 			// ignore...
@@ -56,22 +58,22 @@ module.exports = function() {
 		queryAnnouncement();
 	}
 
-	exports.on = function(eventName, callback) {
-		if(!events[eventName]) {
-			events[eventName] = {};
-		}
-		var callbackId = guid();
-		events[eventName][callbackId] = callback;
-		return callbackId;
-	}
-
-	exports.off = function(eventName, callbackId) {
-		if(!events[eventName]) {
-			return false;
-		}
-		delete events[eventName][callbackId];
-		return true;
-	}
+	//exports.on = function(eventName, callback) {
+	//	if(!events[eventName]) {
+	//		events[eventName] = {};
+	//	}
+	//	var callbackId = guid();
+	//	events[eventName][callbackId] = callback;
+	//	return callbackId;
+	//}
+    //
+	//exports.off = function(eventName, callbackId) {
+	//	if(!events[eventName]) {
+	//		return false;
+	//	}
+	//	delete events[eventName][callbackId];
+	//	return true;
+	//}
 
 
 
