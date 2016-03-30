@@ -38,24 +38,13 @@ module.exports = function() {
 		try {
 			var message = JSON.parse(buffer);
 
-			if(message.event ==='announce'){
-				if (events["announce"]) {
-					for(var callbackId in events["announce"]) {
-						var callback = events["announce"][callbackId];
-						callback(message);
-					}
-				}
+
+			if(message.event ==='announce' && message.event ==='force') {
+				events[message.event] = message;
 			}
-			if(message.event ==='force'){
-				if (events["force"]) {
-					for(var callbackId in events["force"]) {
-						var callback = events["force"][callbackId];
-						callback(message);
-					}
-				}
-			}
-		} catch(e) {
-			// ignore...
+
+			} catch(e) {
+			console.log('Could not parse message');
 		}
 	}
 	exec(messageCallback, null, 'Discovery', 'listen', [ instanceId ]);
@@ -67,27 +56,36 @@ module.exports = function() {
 
 	exports.queryAnnouncement = function() {
 		queryAnnouncement();
-	}
-
-	exports.on = function(eventName, callback) {
-		if (events.hasOwnProperty(eventName)) {
-			events[eventName].push(callback);
-		} else{
-			events[eventName] = {};
-		}
-		var callbackId = guid();
-
-		events[eventName][callbackId] = callback;
-		return callbackId;
 	};
 
-	exports.off = function(eventName, callbackId) {
-		if(!events[eventName]) {
-			return false;
-		}
-		delete events[eventName][callbackId];
-		return true;
-	}
+	exports.getEvents = function(){
+		return events
+	};
+
+	exports.removeEvents = function(){
+		events = {};
+	};
+
+
+	//exports.on = function(eventName, callback) {
+	//	if (events.hasOwnProperty(eventName)) {
+	//		events[eventName].push(callback);
+	//	} else{
+	//		events[eventName] = {};
+	//	}
+	//	var callbackId = guid();
+    //
+	//	events[eventName][callbackId] = callback;
+	//	return callbackId;
+	//};
+    //
+	//exports.off = function(eventName, callbackId) {
+	//	if(!events[eventName]) {
+	//		return false;
+	//	}
+	//	delete events[eventName][callbackId];
+	//	return true;
+	//}
 
 
 
