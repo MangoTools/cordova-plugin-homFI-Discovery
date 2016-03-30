@@ -96,7 +96,7 @@ module.exports = function() {
 	// =====
 
 	function generalSuccessCallback(success) {
-		console.log(success)
+		//console.log(success)
 	}
 
 	function generalFailCallback(error) {
