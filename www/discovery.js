@@ -37,10 +37,12 @@ module.exports = function() {
 	function messageCallback(buffer) {
 		try {
 			var message = JSON.parse(buffer);
-			if (events["announce"]) {
-				for (var callbackId in events["announce"]) {
-					var callback = events["announce"][callbackId];
-					callback(message);
+			if (message.event === 'force') {
+				if (events["announce"]) {
+					for (var callbackId in events["announce"]) {
+						var callback = events["announce"][callbackId];
+						callback(message);
+					}
 				}
 			}
 			if (message.event === 'force') {
